@@ -1,9 +1,5 @@
-print("Hello! Running this after a connection is stablished.")
-
-## Example: get files generated in remote host during the session:
-"""
-remote_origin = "/home/vagrant/.xxh/.xxh/shells/xxh-shell-xonsh/build/../../../../.local/share/xonsh/my_data"
-local_destination = "/my_directory"
+remote_origin = f"{host_xxh_home}/.local/share/xonsh/syslog/shell_profiler.log"
+local_destination = "/tmp/xxh-syslog-profiler-tmp"
 
 bash_wrap_begin = "bash -c 'shopt -s dotglob && "
 bash_wrap_end = "'"
@@ -60,4 +56,9 @@ elif copy_method == 'skip':
         self.eprint('Skip copying')
 else:
     self.eprint('Please install rsync or scp!')
- """
+
+local_file = os.path.expanduser("~") + "/.local/share/xonsh/syslog/shell_profiler.log"
+
+with open("/tmp/xxh-syslog-profiler-tmp", 'r') as tmp_file:
+    with open("local_file", 'a+') as local_log:
+        local_log.write(tmp_file.read())
