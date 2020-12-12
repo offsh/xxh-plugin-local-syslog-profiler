@@ -62,3 +62,9 @@ local_file = os.path.expanduser("~") + "/.local/share/xonsh/syslog/shell_profile
 with open(local_destination, 'r') as tmp_file:
     with open(local_file, 'a+') as local_log:
         local_log.write(tmp_file.read())
+
+if not self.local:
+    self.S('echo "rm -rf {host_xxh_home}/.local/share/xonsh/syslog/shell_profiler.log" | {ssh_pipe_command}'.format(
+        host_xxh_home=host_xxh_home,
+        ssh_pipe_command=ssh_pipe_command
+    ))
