@@ -59,6 +59,6 @@ else:
 
 local_file = os.path.expanduser("~") + "/.local/share/xonsh/syslog/shell_profiler.log"
 
-with open("/tmp/xxh-syslog-profiler-tmp", 'r') as tmp_file:
-    with open("local_file", 'a+') as local_log:
+with open(local_destination, 'r') as tmp_file:
+    with open(local_file, 'a+') as local_log:
         local_log.write(tmp_file.read())
